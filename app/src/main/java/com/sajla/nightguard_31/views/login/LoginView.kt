@@ -29,47 +29,72 @@ import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun LoginView(navController: NavController, viewModel: LoginViewModel){
-
+fun LoginView(navController: NavController, viewModel: LoginViewModel) {
     val state = viewModel.state
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = StoreLogin(context)
 
-    Column (
+    Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        var userEmail = dataStore.getEmail.collectAsState(initial = "")
+        val userEmail = dataStore.getEmail.collectAsState(initial = "")
         CustomImage(image = R.drawable.moon_logo)
-        CustomOutlinedTextField(value = state.username, onValueChange = { viewModel.onValue(it, "username") },
-            ph = "Username", label = "Username", isThereNext = true, isEmail = true)
-        CustomOutlinedTextField(value = state.password, onValueChange = { viewModel.onValue(it, "password") },
-            ph = "Password", label = "Password", isPassword = true)
+        CustomOutlinedTextField(
+            value = state.username,
+            onValueChange = { viewModel.onValue(it, "username") },
+            ph = "Username",
+            label = "Username",
+            isThereNext = true,
+            isEmail = true
+        )
+        CustomOutlinedTextField(
+            value = state.password,
+            onValueChange = { viewModel.onValue(it, "password") },
+            ph = "Password",
+            label = "Password",
+            isPassword = true
+        )
         Spacer(modifier = Modifier.height(15.dp))
 
-        Row (
+        Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            LoginButton(name = "Log in", backColor = R.color.teal_200, color = R.color.button_color_1){
+            LoginButton(
+                name = "Log in",
+                backColor = R.color.teal_200,
+                color = R.color.button_color_1
+            ) {
                 scope.launch {
                     dataStore.saveEmail(state.username)
                 }
-                navController.navigate("Home")  
+                navController.navigate("Home")
             }
-            
-            Text(text = "Or", color = Color.LightGray, modifier = Modifier.padding(horizontal = 15.dp))
 
-            LoginButton(name = "Sign in", backColor = R.color.button_color_1, color = R.color.teal_200) {
+            Text(
+                text = "Or",
+                color = Color.LightGray,
+                modifier = Modifier.padding(horizontal = 15.dp)
+            )
 
+            LoginButton(
+                name = "Sign up",
+                backColor = R.color.button_color_1,
+                color = R.color.teal_200
+            ) {
+
+                navController.navigate("Register")
             }
         }
 
         Spacer(modifier = Modifier.height(15.dp))
-        Text(text = "Forgot your password?", color = colorResource(id = R.color.button_color_1))
-
+        Text(
+            text = "Forgot your password?",
+            color = colorResource(id = R.color.button_color_1)
+        )
     }
 }
