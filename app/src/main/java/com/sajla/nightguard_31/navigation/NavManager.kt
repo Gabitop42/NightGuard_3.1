@@ -11,14 +11,14 @@ import com.sajla.nightguard_31.views.login.LoginView
 import com.sajla.nightguard_31.views.main.MainView
 
 @Composable
-fun NavManager(viewModel: LoginViewModel) {
+fun NavManager(loginViewModel: LoginViewModel, registerViewModel: RegisterViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Login") {
         composable("Login") {
-            LoginView(navController, viewModel)
+            LoginView(navController, loginViewModel)
         }
         composable("Register") {
-            RegisterView(navController, viewModel = RegisterViewModel())
+            RegisterView(navController, registerViewModel)
         }
         composable("Home") {
             MainView(navController)
