@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sajla.nightguard_31.R
+import com.sajla.nightguard_31.components.alerts.Alert
 import com.sajla.nightguard_31.components.buttons.LoginButton
 import com.sajla.nightguard_31.components.images.CustomImage
 import com.sajla.nightguard_31.components.textfields.CustomOutlinedTextField
@@ -70,9 +71,10 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                 color = R.color.button_color_1
             ) {
                 scope.launch {
-                    dataStore.saveEmail(state.username)
+                    viewModel.login(state.username, state.password) {
+                        navController.navigate("Home")
+                    }
                 }
-                navController.navigate("Home")
             }
 
             Text(
@@ -89,6 +91,13 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
 
                 navController.navigate("Register")
             }
+
+            if (viewModel.showAlert){
+                Alert(title = "Alerta", message = "Usuario y/o Contraseña Incorrectos", confirmText = "Aceptar", onDismiss = { viewModel.closeAlert() }) {
+
+                }
+            }
+
         }
 
         Spacer(modifier = Modifier.height(15.dp))
