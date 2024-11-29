@@ -1,5 +1,6 @@
 package com.sajla.nightguard_31.views.login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sajla.nightguard_31.R
+import com.sajla.nightguard_31.components.alerts.Alert
 import com.sajla.nightguard_31.components.buttons.LoginButton
 import com.sajla.nightguard_31.components.images.CustomImage
 import com.sajla.nightguard_31.components.textfields.CustomOutlinedTextField
@@ -70,9 +73,10 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                 color = R.color.button_color_1
             ) {
                 scope.launch {
-                    dataStore.saveEmail(state.username)
+                    viewModel.login(state.username, state.password) {
+                        navController.navigate("Home")
+                    }
                 }
-                navController.navigate("Home")
             }
 
             Text(
@@ -89,6 +93,13 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
 
                 navController.navigate("Register")
             }
+
+            if (viewModel.showAlert){
+                Alert(title = "Alerta", message = "Usuario y/o Contraseña Incorrectos", confirmText = "Aceptar", onDismiss = { viewModel.closeAlert() }) {
+
+                }
+            }
+
         }
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -103,7 +114,10 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = "Forgot your password?",
-            color = colorResource(id = R.color.button_color_1)
+            color = colorResource(id = R.color.button_color_1),
+            modifier = Modifier.clickable {
+                throw RuntimeException("Test Crash")
+            }
         )
     }
 }

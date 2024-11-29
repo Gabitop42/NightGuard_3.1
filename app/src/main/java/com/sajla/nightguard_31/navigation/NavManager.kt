@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.views.RegisterView
 import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
+import com.sajla.nightguard_31.views.main.StartView
 import com.sajla.nightguard_31.viewmodel.register.RegisterViewModel
 import com.sajla.nightguard_31.views.login.LoginView
 import com.sajla.nightguard_31.views.main.MainView
@@ -24,7 +25,7 @@ fun NavManager(loginViewModel: LoginViewModel, registerViewModel: RegisterViewMo
             RegisterView(navController, registerViewModel)
         }
         composable("Home") {
-            MainView(navController)
+            StartView(navController)
         }
         composable("ToolsView") {
             val context = LocalContext.current

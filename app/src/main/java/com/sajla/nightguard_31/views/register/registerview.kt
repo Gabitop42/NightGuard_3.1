@@ -54,7 +54,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             value = state.username,
             onValueChange = { viewModel.onValue(it, "username") },
             ph = "Username",
-            label = "Username"
+            label = "Username",
+            isThereNext = true
         )
 
 
@@ -63,7 +64,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             onValueChange = { viewModel.onValue(it, "email") },
             ph = "Email",
             label = "Email",
-            isEmail = true
+            isEmail = true,
+            isThereNext = true
         )
 
 
@@ -72,7 +74,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             onValueChange = { viewModel.onValue(it, "password") },
             ph = "Password",
             label = "Password",
-            isPassword = true
+            isPassword = true,
+            isThereNext = true
         )
 
 
@@ -91,7 +94,9 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             if (state.password == state.confirmPassword) {
                 viewModel.registerUser { success ->
                     if (success) {
-                        navController.navigate("Login")
+                        viewModel.createUser( state.username, state.email, state.password) {
+                            navController.navigate("Home")
+                        }
                     } else {
                         Toast.makeText(context, "Registration Failed", Toast.LENGTH_SHORT).show()
                     }
@@ -100,6 +105,7 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
                 Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         Spacer(modifier = Modifier.height(15.dp))
 
