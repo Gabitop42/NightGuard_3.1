@@ -102,6 +102,16 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
 
         }
 
+        Spacer(modifier = Modifier.height(15.dp))
+        LoginButton(
+            name = "Go to Tools",
+            backColor = R.color.button_color_1,
+            color = R.color.teal_200
+        ) {
+            navController.navigate("ToolsView")
+        }
+
+        Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = "Forgot your password?",
             color = colorResource(id = R.color.button_color_1),
