@@ -91,7 +91,9 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             if (state.password == state.confirmPassword) {
                 viewModel.registerUser { success ->
                     if (success) {
-                        navController.navigate("Login")
+                        viewModel.createUser( state.username, state.email, state.password) {
+                            navController.navigate("Home")
+                        }
                     } else {
                         Toast.makeText(context, "Registration Failed", Toast.LENGTH_SHORT).show()
                     }
@@ -100,6 +102,7 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
                 Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         Spacer(modifier = Modifier.height(15.dp))
 
