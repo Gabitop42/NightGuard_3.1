@@ -54,7 +54,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             value = state.username,
             onValueChange = { viewModel.onValue(it, "username") },
             ph = "Username",
-            label = "Username"
+            label = "Username",
+            isThereNext = true
         )
 
 
@@ -63,7 +64,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             onValueChange = { viewModel.onValue(it, "email") },
             ph = "Email",
             label = "Email",
-            isEmail = true
+            isEmail = true,
+            isThereNext = true
         )
 
 
@@ -72,7 +74,8 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
             onValueChange = { viewModel.onValue(it, "password") },
             ph = "Password",
             label = "Password",
-            isPassword = true
+            isPassword = true,
+            isThereNext = true
         )
 
 

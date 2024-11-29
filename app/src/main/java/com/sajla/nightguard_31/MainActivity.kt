@@ -14,7 +14,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val loginViewModel : LoginViewModel by viewModels()
         val registerViewModel : RegisterViewModel by viewModels()
-        enableEdgeToEdge()
         setContent {
             NavManager(loginViewModel, registerViewModel)
         }
