@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sajla.nightguard_31.R
@@ -43,7 +42,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        val userEmail = dataStore.getEmail.collectAsState(initial = "")
+        dataStore.getEmail.collectAsState(initial = "")
         CustomImage(image = R.drawable.moon_logo)
         CustomOutlinedTextField(
             value = state.username,

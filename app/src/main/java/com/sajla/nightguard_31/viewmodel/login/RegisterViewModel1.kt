@@ -1,4 +1,4 @@
-package com.sajla.nightguard_31.viewmodel.register
+package com.sajla.nightguard_31.viewmodel.login
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,16 +26,6 @@ class RegisterViewModel(
             "email" -> state = state.copy(email = value)
             "password" -> state = state.copy(password = value)
             "confirmPassword" -> state = state.copy(confirmPassword = value)
-        }
-    }
-
-    fun onValue(value: Boolean, type: String) {
-        when (type) {
-            "isUsernameValid" -> state = state.copy(isUsernameValid = value)
-            "isEmailValid" -> state = state.copy(isEmailValid = value)
-            "isPasswordValid" -> state = state.copy(isPasswordValid = value)
-            "isConfirmPasswordValid" -> state = state.copy(isConfirmPasswordValid = value)
-            "isFormValid" -> state = state.copy(isFormValid = value)
         }
     }
 

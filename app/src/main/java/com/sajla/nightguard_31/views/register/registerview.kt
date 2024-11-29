@@ -1,4 +1,4 @@
-package com.example.myapplication.views
+package com.sajla.nightguard_31.views.register
 
 import androidx.compose.foundation.clickable
 
@@ -23,15 +23,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
-import androidx.compose.runtime.rememberCoroutineScope
-
 import androidx.navigation.NavController
 import com.sajla.nightguard_31.R
 import com.sajla.nightguard_31.components.buttons.LoginButton
 import com.sajla.nightguard_31.components.images.CustomImage
 import com.sajla.nightguard_31.components.textfields.CustomOutlinedTextField
 
-import com.sajla.nightguard_31.viewmodel.register.RegisterViewModel
+import com.sajla.nightguard_31.viewmodel.login.RegisterViewModel
 
 
 
@@ -40,7 +38,7 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
 
     val state = viewModel.state
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
+
 
     Column(
         modifier = Modifier.fillMaxSize(),
