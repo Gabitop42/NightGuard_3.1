@@ -10,13 +10,18 @@ import com.sajla.nightguard_31.navigation.NavManager
 import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
 import com.sajla.nightguard_31.views.login.LoginView
 
+import androidx.activity.compose.setContent
+import androidx.compose.ui.platform.LocalContext
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel : LoginViewModel by viewModels()
-        enableEdgeToEdge()
         setContent {
-            NavManager(viewModel)
+            // Instancia del LoginViewModel
+            val loginViewModel = LoginViewModel()
+
+            // Llamada a NavManager
+            NavManager(loginViewModel = loginViewModel, context = LocalContext.current)
         }
     }
 }

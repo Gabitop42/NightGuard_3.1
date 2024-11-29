@@ -88,16 +88,12 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
 
 
         LoginButton(name = "Register", backColor = R.color.teal_200, color = R.color.button_color_1) {
-            if (state.password == state.confirmPassword) {
-                viewModel.registerUser { success ->
-                    if (success) {
-                        navController.navigate("Login")
-                    } else {
-                        Toast.makeText(context, "Registration Failed", Toast.LENGTH_SHORT).show()
-                    }
+            viewModel.registerUser { success, errorMessage ->
+                if (success) {
+                    navController.navigate("Login")
+                } else {
+                    Toast.makeText(context, errorMessage ?: "Registration Failed", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -1,27 +1,39 @@
 package com.sajla.nightguard_31.navigation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.views.RegisterView
+import com.sajla.nightguard_31.data.store.StoreLogin
+import com.sajla.nightguard_31.services.EncryptPassword
 import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
 import com.sajla.nightguard_31.viewmodel.register.RegisterViewModel
 import com.sajla.nightguard_31.views.login.LoginView
-import com.sajla.nightguard_31.views.main.MainView
+import com.sajla.nightguard_31.views.main.StartView
 
 @Composable
-fun NavManager(viewModel: LoginViewModel) {
+fun NavManager(loginViewModel: LoginViewModel, context: Context) {
     val navController = rememberNavController()
+
+
+    val storeLogin = StoreLogin(context)
+    val encryptPassword = EncryptPassword()
+
     NavHost(navController = navController, startDestination = "Login") {
         composable("Login") {
-            LoginView(navController, viewModel)
+            LoginView(navController, loginViewModel)
         }
         composable("Register") {
-            RegisterView(navController, viewModel = RegisterViewModel())
+            RegisterView(
+                navController,
+                viewModel = RegisterViewModel(storeLogin, encryptPassword)
+            )
         }
         composable("Home") {
-            MainView(navController)
+            StartView(navController)
         }
     }
 }
+

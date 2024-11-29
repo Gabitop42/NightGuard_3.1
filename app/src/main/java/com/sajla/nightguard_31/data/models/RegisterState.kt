@@ -9,5 +9,9 @@ data class RegisterState(
     val isEmailValid: Boolean = true,
     val isPasswordValid: Boolean = true,
     val isConfirmPasswordValid: Boolean = true,
-    val isFormValid: Boolean = false
+    val isFormValid: Boolean = false,
+    val usernameError: String? = null,
+    val emailError: String? = null,
+    val passwordError: String? = null
 )
+

@@ -1,5 +1,6 @@
 package com.sajla.nightguard_31.views.login
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,8 +26,10 @@ import com.sajla.nightguard_31.components.buttons.LoginButton
 import com.sajla.nightguard_31.components.images.CustomImage
 import com.sajla.nightguard_31.components.textfields.CustomOutlinedTextField
 import com.sajla.nightguard_31.data.store.StoreLogin
+import com.sajla.nightguard_31.services.EncryptPassword
 import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
 import kotlinx.coroutines.launch
+import com.sajla.nightguard_31.services.VerifyCredentials
 
 @Composable
 fun LoginView(navController: NavController, viewModel: LoginViewModel) {
@@ -67,13 +70,22 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
             LoginButton(
                 name = "Log in",
                 backColor = R.color.teal_200,
-                color = R.color.button_color_1
+                color = R.color.white
             ) {
                 scope.launch {
-                    dataStore.saveEmail(state.username)
+                    val verifyCredentials = VerifyCredentials(dataStore, EncryptPassword())
+                    val isValid = verifyCredentials.validate(state.username, state.password)
+                    if (isValid) {
+                        navController.navigate("Home")
+                    } else {
+                        Toast.makeText(context, "Invalid credentials, please try again.", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                navController.navigate("Home")
             }
+
+
+
+        }
 
             Text(
                 text = "Or",
@@ -97,4 +109,4 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
             color = colorResource(id = R.color.button_color_1)
         )
     }
-}
+

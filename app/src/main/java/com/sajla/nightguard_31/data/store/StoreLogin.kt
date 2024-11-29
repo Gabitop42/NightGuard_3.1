@@ -9,11 +9,12 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class StoreLogin (private val context: Context) {
+class StoreLogin(private val context: Context) {
 
     companion object {
-        private val Context.dataStore : DataStore<Preferences> by preferencesDataStore("UserLogin")
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("UserLogin")
         val USER_EMAIL = stringPreferencesKey("user_email")
+        val USER_PASSWORD_HASH = stringPreferencesKey("user_password_hash") // Nueva clave
     }
 
     val getEmail: Flow<String> = context.dataStore.data
@@ -21,11 +22,21 @@ class StoreLogin (private val context: Context) {
             preferences[USER_EMAIL] ?: ""
         }
 
+    val getPasswordHash: Flow<String> = context.dataStore.data
+        .map { preferences ->
+            preferences[USER_PASSWORD_HASH] ?: ""
+        }
+
     suspend fun saveEmail(email: String) {
         context.dataStore.edit { preferences ->
             preferences[USER_EMAIL] = email
         }
-
     }
 
+
+    suspend fun savePasswordHash(passwordHash: String) {
+        context.dataStore.edit { preferences ->
+            preferences[USER_PASSWORD_HASH] = passwordHash
+        }
+    }
 }
