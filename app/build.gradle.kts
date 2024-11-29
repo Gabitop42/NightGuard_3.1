@@ -58,6 +58,7 @@ dependencies {
 
     implementation("org.mindrot:jbcrypt:0.4")
     implementation(libs.androidx.datastore.preferences.core.jvm)
+    implementation(libs.androidx.ui.test.android)
 
     val nav_version = "2.8.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
