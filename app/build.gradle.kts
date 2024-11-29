@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    //Crashlytics
+    id("com.google.firebase.crashlytics")
+    //Performance
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -55,6 +59,13 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.google.firebase:firebase-firestore")
+
+    //Performance
+    implementation("com.google.firebase:firebase-perf")
+
+    //CRASHLYTICS
+    implementation("com.google.firebase:firebase-crashlytics-ndk")
+    implementation("com.google.firebase:firebase-analytics")
 
     implementation("org.mindrot:jbcrypt:0.4")
     implementation(libs.androidx.datastore.preferences.core.jvm)
