@@ -11,7 +11,6 @@ import com.sajla.nightguard_31.views.main.StartView
 import com.sajla.nightguard_31.viewmodel.register.RegisterViewModel
 import com.sajla.nightguard_31.views.AppUsageView.AppUsageScreen
 import com.sajla.nightguard_31.views.login.LoginView
-import com.sajla.nightguard_31.views.main.MainView
 import com.sajla.nightguard_31.views.tools.ToolsView
 
 @Composable
