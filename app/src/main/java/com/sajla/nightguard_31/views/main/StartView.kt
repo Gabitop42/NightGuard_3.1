@@ -4,11 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -25,7 +21,7 @@ fun StartView(navController: NavController) {
     var isFirstImage by remember { mutableStateOf(true) }
 
     Box(modifier = Modifier.fillMaxSize()) {
-
+        // Botones de la parte superior
         IconButton(
             onClick = { navController.navigate("Home") },
             modifier = Modifier
@@ -38,7 +34,6 @@ fun StartView(navController: NavController) {
                 tint = Color.Gray
             )
         }
-
 
         IconButton(
             onClick = { navController.navigate("Login") },
@@ -53,25 +48,19 @@ fun StartView(navController: NavController) {
             )
         }
 
-
+        // Imagen central y botón
         Column(
             modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             val currentImage = if (isFirstImage) R.drawable.boton1 else R.drawable.boton2
-
 
             Box(
                 modifier = Modifier
                     .padding(8.dp)
-                    .shadow(
-                        elevation = 16.dp,
-                        shape = androidx.compose.foundation.shape.CircleShape,
-                        clip = false
-                    )
+                    .shadow(16.dp, androidx.compose.foundation.shape.CircleShape)
                     .background(
-                        color = if (isFirstImage) Color(0xAAFF0000) else Color(0xAA00FF00), // Rojo o verde con transparencia
+                        if (isFirstImage) Color(0xAAFF0000) else Color(0xAA00FF00),
                         shape = androidx.compose.foundation.shape.CircleShape
                     )
                     .padding(16.dp)
@@ -80,17 +69,17 @@ fun StartView(navController: NavController) {
             }
 
             Spacer(modifier = Modifier.height(20.dp))
+
             LoginButton(
                 name = "Start App",
                 backColor = R.color.teal_200,
                 color = R.color.white
             ) {
-
                 isFirstImage = !isFirstImage
             }
         }
 
-
+        // Barra inferior
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -105,20 +94,22 @@ fun StartView(navController: NavController) {
                     tint = Color.Gray
                 )
             }
-            IconButton(onClick = { navController.navigate("Home") }) {
+            IconButton(onClick = { navController.navigate("Settings") }) {
                 Icon(
                     painter = painterResource(id = R.drawable.settings),
                     contentDescription = "Settings",
                     tint = Color.Gray
                 )
             }
-            IconButton(onClick = { navController.navigate("Home") }) {
+            IconButton(onClick = { navController.navigate("AppUsage") }) {
                 Icon(
                     painter = painterResource(id = R.drawable.info),
-                    contentDescription = "Contacts",
+                    contentDescription = "Info",
                     tint = Color.Gray
                 )
             }
+
         }
-    }
+        }
+
 }

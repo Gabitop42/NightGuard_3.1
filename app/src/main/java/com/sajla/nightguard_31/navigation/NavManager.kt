@@ -9,6 +9,7 @@ import com.example.myapplication.views.RegisterView
 import com.sajla.nightguard_31.viewmodel.login.LoginViewModel
 import com.sajla.nightguard_31.views.main.StartView
 import com.sajla.nightguard_31.viewmodel.register.RegisterViewModel
+import com.sajla.nightguard_31.views.AppUsageView.AppUsageScreen
 import com.sajla.nightguard_31.views.login.LoginView
 import com.sajla.nightguard_31.views.main.MainView
 import com.sajla.nightguard_31.views.tools.ToolsView
@@ -18,18 +19,14 @@ fun NavManager(loginViewModel: LoginViewModel, registerViewModel: RegisterViewMo
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "Login") {
-        composable("Login") {
-            LoginView(navController, loginViewModel)
-        }
-        composable("Register") {
-            RegisterView(navController, registerViewModel)
-        }
-        composable("Home") {
-            StartView(navController)
-        }
+        composable("Login") { LoginView(navController, loginViewModel) }
+        composable("Register") { RegisterView(navController, registerViewModel) }
+        composable("Start") { StartView(navController) }
+        composable("AppUsage") { AppUsageScreen() }
         composable("ToolsView") {
             val context = LocalContext.current
             ToolsView(navController = navController, context = context)
         }
     }
+
 }

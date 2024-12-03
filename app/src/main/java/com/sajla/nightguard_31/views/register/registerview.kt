@@ -40,7 +40,7 @@ fun RegisterView(navController: NavController, viewModel: RegisterViewModel) {
 
     val state = viewModel.state
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
+    rememberCoroutineScope()
 
     Column(
         modifier = Modifier.fillMaxSize(),

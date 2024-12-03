@@ -60,6 +60,17 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.google.firebase:firebase-firestore")
 
+
+        implementation("androidx.compose.ui:ui:1.5.1")
+        implementation("androidx.compose.material3:material3:1.2.0")
+        implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
+        debugImplementation("androidx.compose.ui:ui-tooling:1.5.1")
+        implementation("androidx.compose.foundation:foundation-layout:1.5.1")
+
+
+
+
+
     //Performance
     implementation("com.google.firebase:firebase-perf")
 
@@ -70,6 +81,7 @@ dependencies {
     implementation("org.mindrot:jbcrypt:0.4")
     implementation(libs.androidx.datastore.preferences.core.jvm)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.runtime.livedata)
 
     val nav_version = "2.8.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
