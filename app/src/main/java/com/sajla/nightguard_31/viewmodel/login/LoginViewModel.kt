@@ -7,12 +7,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.sajla.nightguard_31.data.models.LoginState
-import com.sajla.nightguard_31.data.models.RegisterState
+
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
